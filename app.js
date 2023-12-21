@@ -98,12 +98,22 @@ app.route('/articles/:articleName')
      console.error(error)}) 
 })
 .patch((req, res) => {
-  Article.update(
+  Article.updateOne(
     {title: req.params.articleName},
     { $set: req.body},
   ) .then(() => {
     //  console.log(articles);
      res.send("Successfully updated article")
+   }).catch(error => {
+     res.send(error)
+     console.error(error)}) 
+})
+.delete((req, res) => {
+  Article.deleteOne(
+    {title: req.params.articleName},
+  ) .then(() => {
+    //  console.log(articles);
+     res.send("Successfully deleted article")
    }).catch(error => {
      res.send(error)
      console.error(error)}) 
